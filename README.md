@@ -70,6 +70,7 @@ noble.on('discover', callback(peripheral));
 ```
 
 #Nodejs Advertising BLE [bleno, library]
+Ref: https://github.com/sandeepmistry/bleno
 ###Linux 
 - Kernel version 3.6 or above
 - libbluetooth-dev
