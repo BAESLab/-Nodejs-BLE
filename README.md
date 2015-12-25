@@ -10,7 +10,7 @@ cd node-v0.12.0-linux-arm-pi
 sudo cp -R * /usr/local/
 ```
 
-#Nodejs BLE [noble, library]
+#Nodejs Scan BLE [noble, library]
 Ref: https://github.com/sandeepmistry/noble
 ##Prerequisites
 ###Linux 
@@ -25,5 +25,49 @@ sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
 ```
 
 ###Example
+
+ตัวอย่างการ Scan BLE โดยใช้ Nodejs
+```Javascript
+var noble = require('noble');
+noble.on('stateChange', function(state){
+    console.log('state : '+state);
+     if (state === 'poweredOn') {
+      noble.startScanning([], true);
+    } else {
+      noble.stopScanning();
+    }
+});
+
+noble.on('discover', function(peripheral) {
+    console.log('on -> discover: ' + peripheral.advertisement.localName);
+});
+```
+
+###Peripheral discovered
+```Javascript
+peripheral = {
+  id: "<id>",
+  address: "<BT address">, // Bluetooth Address of device, or 'unknown' if not known
+  addressType: "<BT address type>", // Bluetooth Address type (public, random), or 'unknown' if not known
+  connectable: <connectable>, // true or false, or undefined if not known
+  advertisement: {
+    localName: "<name>",
+    txPowerLevel: <int>,
+    serviceUuids: ["<service UUID>", ...],
+    manufacturerData: <Buffer>,
+    serviceData: [
+        {
+            uuid: "<service UUID>"
+            data: <Buffer>
+        },
+        ...
+    ]
+  },
+  rssi: <rssi>
+};
+
+noble.on('discover', callback(peripheral));
+```
+
 
 
