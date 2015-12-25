@@ -69,5 +69,35 @@ peripheral = {
 noble.on('discover', callback(peripheral));
 ```
 
+#Nodejs Advertising BLE [bleno, library]
+###Linux 
+- Kernel version 3.6 or above
+- libbluetooth-dev
+- bluetoothd disabled, if BlueZ 5.14 or later is installed
+    - System V:
+        - sudo service bluetooth stop (once)
+        - update-rc.d bluetooth remove (persist on reboot)
+    - systemd
+        - systemctl stop bluetooth (once)
+        - systemctl disable bluetooth (persist on reboot)
 
+###Ubuntu/Debian/Raspbian
+```Linux
+sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
+```
+##Install
+```linux 
+npm install bleno
+```
+
+###Example
+ตัวอย่างการปล่อยสัญญาณ iBeacon
+```nodejs
+var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0';
+var major = 0; // 0x0000 - 0xffff
+var minor = 0; // 0x0000 - 0xffff
+var measuredPower = -59; // -128 - 127
+
+bleno.startAdvertisingIBeacon(uuid, major, minor, measuredPower[, callback(error)]);
+```
 
