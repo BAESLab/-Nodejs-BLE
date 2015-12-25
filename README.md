@@ -9,3 +9,21 @@ tar -zxvf node-v0.12.0-linux-arm-pi.tar.gz
 cd node-v0.12.0-linux-arm-pi
 sudo cp -R * /usr/local/
 ```
+
+#Nodejs BLE [noble, library]
+Ref: https://github.com/sandeepmistry/noble
+##Prerequisites
+###Linux 
+- Kernel version 3.6 or above
+- libbluetooth-dev
+###Ubuntu/Debian/Raspbian
+sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
+
+##Install
+```linux
+    npm install noble
+```
+
+###Example
+
+
